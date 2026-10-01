@@ -18,6 +18,22 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // TODO: Add app bar (102)
+      appBar: AppBar(
+        // TODO: Add buttons and title (102)
+        leading: IconButton(
+          icon: const Icon(
+            Icons.menu,
+            semanticLabel: 'menu',
+          ),
+          onPressed: () {
+            print('Menu button');
+          },
+        ),
+        // TODO: Add buttons and title (102)
+        title: const Text('SHRINE'),
+    // TODO: Add trailing buttons (102)
+  ),
       body: Center(
         child: Text('You did it!'),  
       ),
