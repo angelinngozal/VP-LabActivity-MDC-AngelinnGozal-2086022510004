@@ -17,6 +17,8 @@ import 'colors.dart';
 import 'supplemental/cut_corners_border.dart';
 import 'home.dart';
 import 'login.dart';
+import 'backdrop.dart';
+import 'model/product.dart';
 
 // TODO: Build a Shrine Theme (103)
 final ThemeData _kShrineTheme = _buildShrineTheme();
@@ -34,8 +36,12 @@ ThemeData _buildShrineTheme() {
     textSelectionTheme: const TextSelectionThemeData(
       selectionColor: kShrinePink100,
     ),
+    appBarTheme: const AppBarTheme(
+      backgroundColor: kShrinePink100,
+      foregroundColor: kShrineBrown900,
+    ),
     // TODO: Decorate the inputs (103)
-    inputDecorationTheme: InputDecorationTheme(
+    inputDecorationTheme: const InputDecorationTheme(
       border: CutCornersBorder(),
       focusedBorder: CutCornersBorder(
         borderSide: BorderSide(
@@ -93,13 +99,20 @@ class ShrineApp extends StatelessWidget {
   Route<dynamic> _getRoute(RouteSettings settings) {
     if (settings.name != '/login') {
       return MaterialPageRoute<dynamic>(
-  builder: (BuildContext context) => LoginPage(),
-);
+        builder: (BuildContext context) => Backdrop(
+         currentCategory: Category.all,
+          frontLayer: HomePage(),
+         backLayer: Container(color: kShrinePink100),
+          frontTitle: const Text('SHRINE'),
+         backTitle: const Text('MENU'),
+      ),
+      settings: settings,
+      );
     }
 
     return MaterialPageRoute<void>(
       settings: settings,
-      builder: (BuildContext context) => LoginPage(),
+      builder: (BuildContext context) => const LoginPage(),
       fullscreenDialog: true,
     );
   }

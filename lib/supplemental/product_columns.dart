@@ -65,22 +65,25 @@ class TwoProductCardColumn extends StatelessWidget {
 }
 
 class OneProductCardColumn extends StatelessWidget {
-  OneProductCardColumn({this.product});
+  const OneProductCardColumn({required this.product, Key? key}) : super(key: key);
 
   final Product product;
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.end,
+    return ListView(
+      physics: const ClampingScrollPhysics(),
+      reverse: true,
       children: <Widget>[
-        ProductCard(
-          product: product,
+        ConstrainedBox(
+          constraints: const BoxConstraints(
+            maxWidth: 550,
+          ),
+          child: ProductCard(
+            product: product,
+          ),
         ),
-        SizedBox(
+        const SizedBox (
           height: 40.0,
         ),
-      ],
-    );
-  }
-}
+        
